@@ -1,17 +1,126 @@
 <div class="login-main">
   <div class="login-content">
-    <form>
-      <div>
-        <label for="userName">Username :</label>
-        <input type="text" name="userName">
-      </div>
-      <div>
-        <label for="password">Password :</label>
-        <input type="text" name="password">
-      </div>
-      <div>
-        <input type="submit" value="Login">
-      </div>
-    </form>
+      <div class="login-content_welcome">
+          <h1>Hoş Geldiniz</h1>
+          <p>Lütfen aşağıdaki bilgileri doldurunuz.</p>
+        </div>
+      <mat-tab-group>
+          <mat-tab label="Oturum Aç">
+              <mat-card>
+                  <mat-card-content>
+                    <form>
+                      <div>
+                          <mat-form-field>
+                              <input matInput type="text" placeholder="Öğrenci Numarası"  required>
+                          </mat-form-field>
+                      </div>
+                     <div>
+                        <mat-form-field>
+                            <input matInput type="password" placeholder="Şifre" required>
+                        </mat-form-field>
+                     </div>
+                     
+                    </form>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-raised-button class="login-content_button" >Giriş Yap</button>
+                  </mat-card-actions>
+                </mat-card>
+             </mat-tab>
+   
+    <mat-tab label="Kaydol">
+        <mat-card>
+            <mat-card-content>
+                <mat-accordion>
+                    <form>
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                Kişisel Bilgiler
+                              </mat-panel-title>
+                              <mat-panel-description>
+                                <mat-icon>account_circle</mat-icon>
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="T.C Kimlik No"  required>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="E-Posta Adresi"  required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Adı"  required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Soyadı"  required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Telefon Numarası"  required>
+                                </mat-form-field>
+                            </div>
+                      </mat-expansion-panel>
+
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                Okul Bilgileri
+                              </mat-panel-title>
+                              <mat-panel-description>
+                                <mat-icon>book</mat-icon>
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput type="text" placeholder="Öğrenci Numarası"  required>
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-select placeholder="Sınıf Seçiniz">
+                                        <mat-option value="1">1.Sınıf</mat-option>
+                                        <mat-option value="2">2.Sınıf</mat-option>
+                                      </mat-select>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <mat-select placeholder="Şube Seçiniz">
+                                    <mat-option value="1">1.Şube</mat-option>
+                                    <mat-option value="2">2.Şube</mat-option>
+                                    <mat-option value="3">3.Şube</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                            </div>
+                      </mat-expansion-panel>
+                      <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                Şifre Oluştur
+                              </mat-panel-title>
+                              <mat-panel-description>
+                                <mat-icon>lock</mat-icon>
+                              </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <div>
+                                <mat-form-field>
+                                    <input matInput type="password" placeholder="Şifre"  required>
+                                </mat-form-field>
+                            </div>
+                           <div>
+                              <mat-form-field>
+                                  <input matInput type="password" placeholder="Şifre Tekrar" required>
+                              </mat-form-field>
+                           </div>
+                      </mat-expansion-panel>
+                      
+                    </form>
+                  </mat-accordion>
+             
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button class="login-content_button" >Kaydol</button>
+            </mat-card-actions>
+          </mat-card>
+    </mat-tab>
+  </mat-tab-group>
   </div>
 </div>

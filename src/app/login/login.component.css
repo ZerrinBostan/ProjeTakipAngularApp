@@ -8,5 +8,28 @@
 }
 .login-content {
     display:flex;
-    background-color: red
+    flex-direction: column;
+    justify-content: center;
+    height: inherit;
+    width: 30%;
+}
+.login-content_welcome {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.login-content_welcome  > p{
+    color: gray;
+    opacity: 0.5;
+}
+.login-content_button {
+    width:100%;
+    background-color: rgb(46, 175, 255);
+    color: white;
+}
+form  *:not(.mat-action-row) {
+    width: 100%;
+}
+.mat-card-title {
+    text-align: center;
 }
