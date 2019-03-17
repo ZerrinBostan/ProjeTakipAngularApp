@@ -1,0 +1,55 @@
+<div class="projects">
+  <div class="projects-header">
+      <app-componentheaders [componentName]="'Projelerim'" [componentIcon]="'work'" [description]="'Eklediğiniz tüm projeleri bu sayfadan görebilirsiniz.'" ></app-componentheaders>
+      <button mat-button (click)="openDialog()"><mat-icon>add</mat-icon></button>
+  </div>
+  <div class="project-content">
+    <table mat-table [dataSource]="projectData" class="mat-elevation-z8">
+      <ng-container matColumnDef="projeNo">
+        <th mat-header-cell *matHeaderCellDef> No </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeNo}} </td>
+      </ng-container>
+      <ng-container matColumnDef="ders">
+        <th mat-header-cell *matHeaderCellDef> Ders </th>
+        <td mat-cell *matCellDef="let element"> {{element.ders}} </td>
+      </ng-container>
+      <ng-container matColumnDef="projeBaslik">
+        <th mat-header-cell *matHeaderCellDef> Proje Başlık </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeBaslik}} </td>
+      </ng-container>
+      <ng-container matColumnDef="projeDanismani">
+        <th mat-header-cell *matHeaderCellDef> Proje Danışmanı </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeDanismani}} </td>
+      </ng-container>
+      <ng-container matColumnDef="projeYurutucusu">
+        <th mat-header-cell *matHeaderCellDef> Proje Yurutucusu </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeYurutucusu}} </td>
+      </ng-container>
+      <ng-container matColumnDef="projeSuresi">
+        <th mat-header-cell *matHeaderCellDef> Proje Süresi </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeSuresi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="baslangicTarihi">
+        <th mat-header-cell *matHeaderCellDef> Baslangıç Tarihi </th>
+        <td mat-cell *matCellDef="let element"> {{element.baslangicTarihi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="bitisTarihi">
+        <th mat-header-cell *matHeaderCellDef> Bitiş Tarihi </th>
+        <td mat-cell *matCellDef="let element"> {{element.bitisTarihi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="projeAciklamasi">
+        <th mat-header-cell *matHeaderCellDef> Proje Açıklaması </th>
+        <td mat-cell *matCellDef="let element"> {{element.projeAciklamasi}} </td>
+      </ng-container>
+      <ng-container matColumnDef="butce">
+        <th mat-header-cell *matHeaderCellDef> Bütçe </th>
+        <td mat-cell *matCellDef="let element"> {{element.butce}} </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+    </table>
+  </div>
+</div>
+

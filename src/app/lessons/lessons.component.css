@@ -1,0 +1,9 @@
+.lessons {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.lessons-header {
+  width: 100%;
+}

@@ -1,0 +1,18 @@
+.projects {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+.projects-header {
+    width: 100%;
+}
+.project-content {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+}
+.project-content  table {
+    width: 100%;
+}

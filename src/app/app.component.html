@@ -1,1 +1,69 @@
-<app-login></app-login>
+<div>
+    <nav class="nav">
+        <div class="left-nav">
+            <button mat-button (click)="toogleDrawer()">
+                <mat-icon>reorder</mat-icon>
+            </button>
+            <h2>Proje Takip Sistemi</h2>
+        </div>
+        <div class="right-nav">
+            <button mat-button [matMenuTriggerFor]="notification">
+                <mat-icon>add_alert </mat-icon>
+            </button>
+            <mat-menu #notification="matMenu">
+                <p mat-menu-item>
+                    Proje Eklendi
+                    <mat-icon matBadge="4">book</mat-icon>
+                </p>
+                <p mat-menu-item>
+                    Projeniz Onaylandı
+                    <mat-icon matBadge="15" matBadgeColor="warn">check_circle</mat-icon>
+                </p>
+            </mat-menu>
+            <button mat-button>
+                <mat-icon>settings </mat-icon>
+            </button>
+        </div>
+    </nav>
+    <main>
+        <div>
+            <mat-drawer-container>
+                <mat-drawer #drawer class="main-container-drawer" mode="side">
+                    <div>
+                        <a routerLink="/profil" mat-button>
+                            <mat-icon>account_circle</mat-icon>Profil
+                        </a>
+                    </div>
+                    <div>
+                        <a routerLink="/" mat-button>
+                            <mat-icon>home</mat-icon>
+                            Anasayfa
+                        </a>
+                    </div>
+
+                    <div>
+                        <a routerLink="/projects" mat-button>
+                            <mat-icon>work</mat-icon>Projelerim
+                        </a>
+                    </div>
+                    <div>
+                        <a routerLink="/lessons" mat-button>
+                            <mat-icon>book</mat-icon>Derslerim
+                        </a>
+                    </div>
+                    <div>
+                            <a routerLink="/reports" mat-button>
+                                <mat-icon>description</mat-icon>Raporlarım
+                            </a>
+                        </div>
+
+                </mat-drawer>
+                <mat-drawer-content>
+                    <div class="main-content">
+                        <router-outlet></router-outlet>
+                        </div>
+                </mat-drawer-content>
+            </mat-drawer-container>
+        </div>
+    </main>
+</div>

@@ -1,0 +1,23 @@
+.page-header {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.page-header-head {
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.page-header-hr {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  height: 3px;
+}
+.page-header-description > p{
+  font-size: 14px;
+  font-family: 'Times New Roman', Times, serif;
+  opacity: 0.5;
+}
