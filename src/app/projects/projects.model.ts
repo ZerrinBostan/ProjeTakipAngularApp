@@ -1,14 +1,15 @@
 export interface Projects {
-    projeNo: number;
-    ders: string;
-    projeBaslik: string;
-    projeDanismani: string;
-    projeYurutucusu: string;
-    projeSuresi: string;
-    projeAciklamasi: string;
-    baslangicTarihi: string;
-    bitisTarihi: string;
-    butce: number;
+  _id: string;
+  no: number;
+  studies: string;
+  title: string;
+  teacher: string;
+  owner: string;
+  time: string;
+  start_time: Date;
+  end_time: Date;
+  definition: string;
+  budget: string;
 }
 
 export class Project {

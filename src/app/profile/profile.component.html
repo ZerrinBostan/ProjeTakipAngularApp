@@ -1,0 +1,149 @@
+<div class="profile-edit">
+  <div class="profile-header">
+    <app-componentheaders
+      [description]="'Profil Ayarlarınızı buradan yapabilirsiniz.'"
+      [componentName]="'Profil Ayarları'"
+      [componentIcon]="'person_pin'"
+    ></app-componentheaders>
+  </div>
+    <div
+      style="margin-left:35%; margin-top:20px;" class="centeredit">
+      <div class="colortheme">
+      <div class="profile-content">
+        <mat-form-field class="example-full-width">
+          <input
+            matInput
+            placeholder="Okul"
+            disabled
+            value="Gazi Üniversitesi Kazan MYO"
+          />
+        </mat-form-field>
+        <mat-tab-group animationDuration="1000ms">
+          <mat-tab label="Kişisel Bilgiler">
+            <br />
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                placeholder="Tc No"
+                disabled
+                value="12345678911"
+              />
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <br />
+              <input
+                matInput
+                placeholder="Email"
+                [formControl]="emailFormControl"
+              />
+              <mat-error
+                *ngIf="
+                  emailFormControl.hasError('email') &&
+                  !emailFormControl.hasError('required')
+                "
+              >
+                Email Gereklidir.
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error>
+              <mat-icon matSuffix>drafts</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Ad" />
+              <mat-icon matSuffix>turned_in_not</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Soyad" />
+              <mat-icon matSuffix>turned_in_not</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <span matPrefix>+(09) &nbsp;</span>
+              <input
+                type="tel"
+                matInput
+                #telefonNo
+                maxlength="15"
+                placeholder="Telefon Numarası"
+              />
+              <mat-hint align="end">{{ telefonNo.value.length }} / 17</mat-hint>
+              <mat-icon matSuffix>phone_in_talk</mat-icon>
+            </mat-form-field>
+          </mat-tab>
+          <mat-tab label="Okul Bilgileri">
+            <br />
+            <mat-form-field class="example-full-width">
+              <input
+                matInput
+                #telefonNo
+                maxlength="9"
+                placeholder="Okul Numarası"
+              />
+              <mat-hint align="end">{{ telefonNo.value.length }} / 9</mat-hint>
+              <mat-icon matSuffix>edit</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-select placeholder="Sınıf Seçiniz">
+                <mat-option value="1">1.Sınıf</mat-option>
+                <mat-option value="2">2.Sınıf</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <mat-form-field>
+                <mat-select placeholder="Şube Seçiniz">
+                  <mat-option value="1">1.Şube</mat-option>
+                  <mat-option value="2">2.Şube</mat-option>
+                  <mat-option value="3">3.Şube</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </mat-tab>
+          <mat-tab label="Şifre İşlemleri">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Şifreyi giriniz"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Şifreyi Tekrar giriniz"
+                [type]="hide ? 'password' : 'text'"
+              />
+              <mat-icon matSuffix (click)="hide = !hide">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </mat-form-field>
+            <div>
+              <div class="rowstylebuton">
+                <button
+                  mat-raised-button
+                  matTooltip="Yapılan değişiklikleri Kaydet"
+                  aria-label="Button that displays a tooltip when focused or hovered over"
+                >
+                  Kaydet
+                </button>
+              </div>
+              <br />
+              <div>
+                <button
+                  mat-raised-button
+                  matTooltip="vazgeç"
+                  aria-label="Button that displays a tooltip when focused or hovered over"
+                >
+                  İptal
+                </button>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+</div>

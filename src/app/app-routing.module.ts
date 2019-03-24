@@ -9,8 +9,10 @@ import { ProjectComponent } from './projects/project/project.component';
 import { LoginComponent } from './login/login.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { ReportsComponent } from './reports/reports.component';
+import { ProfileComponent } from './profile/profile.component';
 const routes: Routes = [
   {path: ' ', component: AppComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'login', component: LoginComponent},
   {path: 'projects', component: ProjectsComponent, children: [
     {path: 'add', component: AddProjectComponent},

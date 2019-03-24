@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { CovalentTextEditorModule } from '@covalent/text-editor';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +19,7 @@ import { ComponentheadersComponent } from './componentheaders/componentheaders.c
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteProjectComponent } from './projects/delete-project/delete-project.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LessonsComponent,
     ComponentheadersComponent,
     ReportsComponent,
-    ProfileComponent
+    ProfileComponent,
+    DeleteProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     AppRoutingModule,
     MatSidenavModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    CovalentTextEditorModule
   ],
+  entryComponents:[DeleteProjectComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

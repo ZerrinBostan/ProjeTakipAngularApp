@@ -4,6 +4,8 @@ import { Project, Projects } from './projects.model';
 import { MatTableDataSource, MatDialog } from '@angular/material';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectService } from './project.service';
+import { DeleteProjectComponent } from './delete-project/delete-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @Component({
   selector: 'app-projects',
@@ -15,7 +17,6 @@ export class ProjectsComponent implements OnInit {
 
   projectData: Projects[] = [];
   columnNames = [
-    'projeNo',
     'ders',
     'projeBaslik',
     'projeDanismani',
@@ -24,11 +25,35 @@ export class ProjectsComponent implements OnInit {
     'baslangicTarihi',
     'bitisTarihi',
     'projeAciklamasi',
-    'butce'
+    'butce',
+    'guncelle',
+    'sil'
   ]
-  openDialog(): void {
+  openAddDialog(): void {
     const dialogRef = this.dialog.open(AddProjectComponent, {
       width: '250px'
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.projectService.getProjects().subscribe((data) => {
+        this.projectData = data.slice();
+      });
+    });
+  }
+  openDeleteDialog(id: number): void {
+    const dialogRef = this.dialog.open(DeleteProjectComponent, {
+      width: '350px',
+      data: id
+    });
+    dialogRef.afterClosed().subscribe(() => {
+      this.projectService.getProjects().subscribe((data) => {
+        this.projectData = data.slice();
+      });
+    });
+  }
+  openEditDialog(id: number): void {
+    const dialogRef = this.dialog.open(EditProjectComponent, {
+      width: '350px',
+      data: id
     });
     dialogRef.afterClosed().subscribe(() => {
       this.projectService.getProjects().subscribe((data) => {
@@ -40,7 +65,9 @@ export class ProjectsComponent implements OnInit {
   constructor(public dialog: MatDialog, public projectService: ProjectService) { }
 
   ngOnInit() {
-
+    this.projectService.getProjects().subscribe(data => {
+      this.projectData = data.slice();
+    });
   }
 
 }

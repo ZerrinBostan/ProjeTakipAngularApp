@@ -1,47 +1,48 @@
 <div mat-dialog-content>
   <form [formGroup]="projectForm">
       <mat-form-field>
-          <mat-select placeholder="Ders Seçin" formControlName="ders">
-            <mat-option>
+        <mat-label>Ders Seçin</mat-label>
+          <mat-select formControlName="studies">
+            <mat-option [value]="0">
               Sistem Analizi Ve Tasarımı
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input type="text" matInput placeholder="Proje Başlığı Girin" formControlName="projeBaslik">
+          <input type="text" matInput placeholder="Proje Başlığı Girin" formControlName="title">
         </mat-form-field>
         <mat-form-field>
-            <mat-select placeholder="Proje Danışmanı Seçin" formControlName="projeDanismani">
-                <mat-option>
+            <mat-select placeholder="Proje Danışmanı Seçin" formControlName="teacher">
+                <mat-option [value]="0">
                   Mahmut KASAP
                 </mat-option>
               </mat-select>
         </mat-form-field>
         <mat-form-field>
-          <input type="text" matInput placeholder="Proje Yürütücüsü" formControlName="projeYurutucusu">
+          <input type="text" matInput placeholder="Proje Yürütücüsü" formControlName="owner">
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Proje Süresi" formControlName="projeSuresi">
-            <mat-option *ngFor="let week of weeks">
-              {{week }} Hafta
+          <mat-select placeholder="Proje Süresi" formControlName="time">
+            <mat-option *ngFor="let week of weeks" [value]="week">
+              {{week }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
-                <input matInput [matDatepicker]="picker" placeholder="Başlangıç Tarihi" formControlName="baslangicTarihi">
+                <input matInput [matDatepicker]="picker" placeholder="Başlangıç Tarihi" formControlName="start_time">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Bitiş Tarihi" formControlName="bitisTarihi">
+            <input matInput [matDatepicker]="picker2" placeholder="Bitiş Tarihi" formControlName="end_time">
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
     <mat-form-field >
-        <textarea matInput placeholder="Proje Açıklaması" formControlName="projeAciklamasi"></textarea>
+        <textarea matInput placeholder="Proje Açıklaması" formControlName="definition"></textarea>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Bütçe" type="number" formControlName="butce">
+        <input matInput placeholder="Bütçe" type="number" formControlName="budget">
         <span matPrefix>₺&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
@@ -49,5 +50,6 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onClose()">Vazgeç</button>
-    <button mat-button (click)="onAdd()" cdkFocusInitial>Ekle</button>
+    <button mat-button (click)="onAdd()">Ekle</button>
+  </div>
   </div>
