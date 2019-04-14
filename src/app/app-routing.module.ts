@@ -13,15 +13,15 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthguardService } from './login/authguard.service';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: ' ', component: AppComponent, canActivate: [AuthguardService]},
-  {path: 'profile', component: ProfileComponent},
+  {path: '', component: AppComponent, canActivate: [AuthguardService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthguardService]},
   {path: 'projects', component: ProjectsComponent,  canActivate: [AuthguardService], children: [
     {path: 'add', component: AddProjectComponent},
     {path: 'edit', component : EditProjectComponent},
     {path: 'detail', component: ProjectComponent},
   ]},
-  {path: 'lessons', component: LessonsComponent},
-  {path: 'reports', component: ReportsComponent}
+  {path: 'lessons', canActivate: [AuthguardService], component: LessonsComponent},
+  {path: 'reports',canActivate: [AuthguardService],  component: ReportsComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
