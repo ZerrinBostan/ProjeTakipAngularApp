@@ -1,5 +1,6 @@
 export interface Projects {
   _id: string;
+  studentId: number;
   no: number;
   studies: string;
   title: string;
