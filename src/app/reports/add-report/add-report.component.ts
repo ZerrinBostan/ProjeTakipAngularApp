@@ -32,5 +32,8 @@ export class AddReportComponent implements OnInit {
     });
     this.dialogRef.close();
   }
+  onClose() {
+    this.dialogRef.close();
+  }
 
 }
