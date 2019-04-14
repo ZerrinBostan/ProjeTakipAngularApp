@@ -11,17 +11,26 @@ import { LessonsComponent } from './lessons/lessons.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthguardService } from './login/authguard.service';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/login/admin-login.component';
+import { HomeComponent } from './home/home.component';
+import { StudentsComponent } from './students/students.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: '', component: AppComponent, canActivate: [AuthguardService]},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthguardService]},
-  {path: 'projects', component: ProjectsComponent,  canActivate: [AuthguardService], children: [
-    {path: 'add', component: AddProjectComponent},
-    {path: 'edit', component : EditProjectComponent},
-    {path: 'detail', component: ProjectComponent},
+  {path: 'admin-login', component: AdminLoginComponent},
+  {path: '', component: HomeComponent, canActivate: [AuthguardService], children: [
+    {path: 'profile', component: ProfileComponent, canActivate: [AuthguardService]},
+    {path: 'admin', component: AdminComponent},
+    {path: 'projects', component: ProjectsComponent,  canActivate: [AuthguardService], children: [
+      {path: 'add', component: AddProjectComponent},
+      {path: 'edit', component : EditProjectComponent},
+      {path: 'detail', component: ProjectComponent},
+    ]},
+    {path: 'lessons', canActivate: [AuthguardService], component: LessonsComponent},
+    {path: 'reports', canActivate: [AuthguardService],  component: ReportsComponent},
+    {path: 'students', canActivate: [AuthguardService], component: StudentsComponent}
   ]},
-  {path: 'lessons', canActivate: [AuthguardService], component: LessonsComponent},
-  {path: 'reports',canActivate: [AuthguardService],  component: ReportsComponent}
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
