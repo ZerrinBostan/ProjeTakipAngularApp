@@ -20,6 +20,9 @@ import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteProjectComponent } from './projects/delete-project/delete-project.component';
+import { AddReportComponent } from './reports/add-report/add-report.component';
+import { EditReportComponent } from './reports/edit-report/edit-report.component';
+import { DeleteReportComponent } from './reports/delete-report/delete-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,10 @@ import { DeleteProjectComponent } from './projects/delete-project/delete-project
     ComponentheadersComponent,
     ReportsComponent,
     ProfileComponent,
-    DeleteProjectComponent
+    DeleteProjectComponent,
+    AddReportComponent,
+    EditReportComponent,
+    DeleteReportComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { DeleteProjectComponent } from './projects/delete-project/delete-project
     HttpClientModule,
     CovalentTextEditorModule
   ],
-  entryComponents:[DeleteProjectComponent],
+  entryComponents:[DeleteProjectComponent, AddReportComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

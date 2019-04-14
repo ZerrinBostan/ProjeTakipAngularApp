@@ -10,11 +10,12 @@ import { LoginComponent } from './login/login.component';
 import { LessonsComponent } from './lessons/lessons.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthguardService } from './login/authguard.service';
 const routes: Routes = [
-  {path: ' ', component: AppComponent},
-  {path: 'profile', component: ProfileComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'projects', component: ProjectsComponent, children: [
+  {path: ' ', component: AppComponent, canActivate: [AuthguardService]},
+  {path: 'profile', component: ProfileComponent},
+  {path: 'projects', component: ProjectsComponent,  canActivate: [AuthguardService], children: [
     {path: 'add', component: AddProjectComponent},
     {path: 'edit', component : EditProjectComponent},
     {path: 'detail', component: ProjectComponent},
@@ -27,3 +28,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+
