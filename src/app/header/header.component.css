@@ -1,0 +1,22 @@
+.nav{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 20%;
+}
+.left-nav{
+    display: flex;
+    justify-content: flex-start;
+}
+.right-nav{
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-border {
+  position: relative;
+  z-index: 2;
+  -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.20);
+-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.20);
+box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.20);
+}

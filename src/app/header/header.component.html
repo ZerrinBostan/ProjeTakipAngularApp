@@ -1,0 +1,32 @@
+<div class="nav-border">
+    <nav class="nav">
+        <div class="left-nav">
+            <button mat-button (click)="toogleDrawer()">
+                <mat-icon>reorder</mat-icon>
+            </button>
+            <h2>Proje Takip Sistemi</h2>
+        </div>
+        <div class="right-nav">
+            <button mat-button [matMenuTriggerFor]="notification">
+                <mat-icon>add_alert </mat-icon>
+            </button>
+            <mat-menu #notification="matMenu">
+                <p mat-menu-item>
+                    Proje Eklendi
+                    <mat-icon matBadge="4">book</mat-icon>
+                </p>
+                <p mat-menu-item>
+                    Projeniz Onaylandı
+                    <mat-icon matBadge="15" matBadgeColor="warn">check_circle</mat-icon>
+                </p>
+            </mat-menu>
+            <button mat-button *ngIf="!isAdmin" (click)="logOut()">
+                <mat-icon>exit_to_app </mat-icon>
+            </button>
+            <button mat-button *ngIf="isAdmin" (click)="logOutAdmin()">
+                <mat-icon>exit_to_app </mat-icon>
+            </button>
+        </div>
+      </nav>
+</div>
+
