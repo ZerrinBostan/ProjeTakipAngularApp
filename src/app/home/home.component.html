@@ -1,0 +1,56 @@
+
+<div>
+    <app-header [isAdmin]="isAdmin" [drawer]="drawer"></app-header>
+      <main>
+          <div>
+              <mat-drawer-container>
+                  <mat-drawer #drawer class="main-container-drawer" mode="side">
+                      <div>
+                          <a routerLink="/profile" mat-button>
+                              <mat-icon>account_circle</mat-icon>Profil
+                          </a>
+                      </div>
+                      <div *ngIf="!isAdmin">
+                          <a routerLink="/" mat-button>
+                              <mat-icon>home</mat-icon>
+                              Anasayfa
+                          </a>
+                      </div>
+                      <div *ngIf="isAdmin">
+                          <a routerLink="/admin" mat-button>
+                              <mat-icon>home</mat-icon>
+                              Anasayfa
+                          </a>
+                      </div>
+                      <div *ngIf="isAdmin">
+                          <a routerLink="/students" mat-button>
+                              <mat-icon>face</mat-icon>
+                              Öğrenciler
+                          </a>
+                      </div>
+                      <div *ngIf="!isAdmin">
+                          <a routerLink="/projects" mat-button>
+                              <mat-icon>work</mat-icon>Projelerim
+                          </a>
+                      </div>
+                      <div *ngIf="!isAdmin">
+                          <a routerLink="/lessons" mat-button>
+                              <mat-icon>book</mat-icon>Derslerim
+                          </a>
+                      </div>
+                      <div *ngIf="!isAdmin">
+                              <a routerLink="/reports" mat-button>
+                                  <mat-icon>description</mat-icon>Raporlarım
+                              </a>
+                          </div>
+
+                  </mat-drawer>
+                  <mat-drawer-content>
+                      <div class="main-content">
+                          <app-root></app-root>
+                      </div>
+                  </mat-drawer-content>
+              </mat-drawer-container>
+          </div>
+      </main>
+  </div>
