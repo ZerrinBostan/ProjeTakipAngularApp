@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { ProfileService } from './profile.service';
+import { Students } from '../login/students.model';
 
 @Component({
   selector: 'app-profile',
@@ -13,9 +15,13 @@ export class ProfileComponent implements OnInit {
   ]);
   panelOpenState = false;
   hide:boolean;
-  constructor() { }
+  studentData: Students;
+  constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
+    this.profileService.getUserInfo().subscribe((observer) => {
+    this.studentData = observer;
+    });
   }
 
 }
