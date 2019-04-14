@@ -1,3 +1,7 @@
-<p>
-  delete-report works!
-</p>
+<div mat-dialog-content>
+  Raporu silmek istediğinizden emin misiniz ?
+  <div mat-dialog-actions>
+      <button mat-button (click)="onClose()">Vazgeç</button>
+      <button mat-button (click)="onDelete()">Sil</button>
+  </div>
+</div>

@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReportsService } from '../reports.service';
 import { Reports } from '../reports.model';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-add-report',
@@ -21,12 +22,13 @@ export class AddReportComponent implements OnInit {
     description: ''
   });
   report: Reports;
-  constructor(public dialogRef: MatDialogRef<AddReportComponent>, private formBuilder: FormBuilder, private reportService: ReportsService) { }
+  constructor(public dialogRef: MatDialogRef<AddReportComponent>, private formBuilder: FormBuilder, private reportService: ReportsService, private localStorage: LocalStorageService) { }
   ngOnInit() {
     this.textEditor.options.lineWrapping = true;
   }
   onAdd() {
     this.report = this.reportForm.value;
+    this.report.studentId = this.localStorage.get('_id');
     this.reportService.addReport(this.report).subscribe((data) => {
       console.log(data);
     });

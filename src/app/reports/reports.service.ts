@@ -18,6 +18,10 @@ export class ReportsService {
     const url = `${environment.apiUrl}Reports`;
     return this.http.get<Reports[]>(url);
   }
+  getReportsById(id: string): Observable<Reports[]> {
+    const url = `${environment.apiUrl}Reports/reports/${id}`;
+    return this.http.get<Reports[]>(url);
+  }
   getReport(id: string): Observable<Reports> {
     const url = `${environment.apiUrl}Reports/${id}`;
     return this.http.get<Reports>(url);

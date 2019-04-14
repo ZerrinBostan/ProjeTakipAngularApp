@@ -1,6 +1,6 @@
 export interface Reports {
   _id: any;
-  studentId: number;
+  studentId: string;
   no: number;
   name: string;
   surname: string;

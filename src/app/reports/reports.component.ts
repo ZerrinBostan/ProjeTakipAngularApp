@@ -6,6 +6,7 @@ import { AddReportComponent } from './add-report/add-report.component';
 import { DeleteReportComponent } from './delete-report/delete-report.component';
 import { EditReportComponent } from './edit-report/edit-report.component';
 import { MatTableDataSource, MatDialog } from '@angular/material';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-reports',
@@ -15,7 +16,8 @@ import { MatTableDataSource, MatDialog } from '@angular/material';
 export class ReportsComponent implements OnInit {
   dataSource = new MatTableDataSource<Reports>();
   reportData: Reports[] = [];
-  constructor(private reportService: ReportsService, public dialog: MatDialog) { }
+  id: string;
+  constructor(private reportService: ReportsService, public dialog: MatDialog, private localStorage: LocalStorageService) { }
   columnNames = [
     'no',
     'name',
@@ -27,7 +29,9 @@ export class ReportsComponent implements OnInit {
     'sil'
   ];
   ngOnInit() {
-    this.reportService.getReports().subscribe((data) => {
+    this.id = this.localStorage.get('_id');
+    this.reportService.getReportsById(this.id).subscribe((data) => {
+      console.log(data);
       this.reportData = data;
     });
   }
@@ -36,7 +40,7 @@ export class ReportsComponent implements OnInit {
       width: '750px'
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.reportService.getReports().subscribe((data) => {
+      this.reportService.getReportsById(this.id).subscribe((data) => {
         this.reportData = data.slice();
       });
     });
@@ -47,7 +51,7 @@ export class ReportsComponent implements OnInit {
       data: id
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.reportService.getReports().subscribe((data) => {
+      this.reportService.getReportsById(this.id).subscribe((data) => {
         this.reportData = data.slice();
       });
     });
@@ -58,7 +62,7 @@ export class ReportsComponent implements OnInit {
       data: id
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.reportService.getReports().subscribe((data) => {
+      this.reportService.getReportsById(this.id).subscribe((data) => {
         this.reportData = data.slice();
       });
     });

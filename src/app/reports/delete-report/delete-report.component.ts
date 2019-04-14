@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { ReportsService } from '../reports.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-delete-report',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteReportComponent implements OnInit {
 
-  constructor() { }
+// tslint:disable-next-line: max-line-length
+  constructor(public dialogRef: MatDialogRef<DeleteReportComponent>, private reportsService: ReportsService, @Inject(MAT_DIALOG_DATA) public data: string) { }
 
   ngOnInit() {
+  }
+  onDelete() {
+    this.reportsService.deleteReport(this.data).subscribe((data) => {
+     this.dialogRef.close();
+    });
+  }
+  onClose() {
+    this.dialogRef.close();
   }
 
 }
