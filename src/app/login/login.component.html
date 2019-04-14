@@ -8,22 +8,22 @@
           <mat-tab label="Oturum Aç">
               <mat-card>
                   <mat-card-content>
-                    <!-- <form> -->
+                    <form [formGroup]="loginForm">
                       <div>
                           <mat-form-field>
-                              <input matInput type="text" placeholder="Öğrenci Numarası"  required>
+                              <input matInput formControlName="studentNo" type="text" placeholder="Öğrenci Numarası"  required>
                           </mat-form-field>
                       </div>
                      <div>
                         <mat-form-field>
-                            <input matInput type="password" placeholder="Şifre" required>
+                            <input matInput formControlName="studentPassword" type="password" placeholder="Şifre" required>
                         </mat-form-field>
                      </div>
 
-                    <!-- </form> -->
+                    </form>
                   </mat-card-content>
                   <mat-card-actions>
-                    <button mat-raised-button class="login-content_button" >Giriş Yap</button>
+                    <button mat-raised-button class="login-content_button" (click)="onLogin()">Giriş Yap</button>
                   </mat-card-actions>
                 </mat-card>
              </mat-tab>
@@ -32,7 +32,7 @@
         <mat-card>
             <mat-card-content>
                 <mat-accordion>
-                    <!-- <form> -->
+                    <form [formGroup]="registerForm">
                       <mat-expansion-panel>
                           <mat-expansion-panel-header>
                               <mat-panel-title>
@@ -44,21 +44,21 @@
                             </mat-expansion-panel-header>
                             <div>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="T.C Kimlik No"  required>
+                                    <input matInput type="text" formControlName="identityNumber" placeholder="T.C Kimlik No"  required>
                                 </mat-form-field>
                             </div>
                             <div>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="E-Posta Adresi"  required>
+                                    <input matInput type="text" formControlName="email" placeholder="E-Posta Adresi"  required>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="Adı"  required>
+                                    <input matInput type="text" formControlName="name" placeholder="Adı"  required>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="Soyadı"  required>
+                                    <input matInput type="text" formControlName="surname" placeholder="Soyadı"  required>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="Telefon Numarası"  required>
+                                    <input matInput type="text" formControlName="phoneNumber" placeholder="Telefon Numarası"  required>
                                 </mat-form-field>
                             </div>
                       </mat-expansion-panel>
@@ -74,16 +74,16 @@
                             </mat-expansion-panel-header>
                             <div>
                                 <mat-form-field>
-                                    <input matInput type="text" placeholder="Öğrenci Numarası"  required>
+                                    <input matInput type="text" formControlName="studentNumber" placeholder="Öğrenci Numarası"  required>
                                 </mat-form-field>
                                 <mat-form-field>
-                                    <mat-select placeholder="Sınıf Seçiniz">
+                                    <mat-select placeholder="Sınıf Seçiniz" formControlName="studentClass">
                                         <mat-option value="1">1.Sınıf</mat-option>
                                         <mat-option value="2">2.Sınıf</mat-option>
                                       </mat-select>
                                 </mat-form-field>
                                 <mat-form-field>
-                                  <mat-select placeholder="Şube Seçiniz">
+                                  <mat-select placeholder="Şube Seçiniz" formControlName="studentClassGroup">
                                     <mat-option value="1">1.Şube</mat-option>
                                     <mat-option value="2">2.Şube</mat-option>
                                     <mat-option value="3">3.Şube</mat-option>
@@ -102,22 +102,22 @@
                             </mat-expansion-panel-header>
                             <div>
                                 <mat-form-field>
-                                    <input matInput type="password" placeholder="Şifre"  required>
+                                    <input matInput type="password" formControlName="password" placeholder="Şifre"  required>
                                 </mat-form-field>
                             </div>
                            <div>
                               <mat-form-field>
-                                  <input matInput type="password" placeholder="Şifre Tekrar" required>
+                                  <input matInput type="password" formControlName="repassword" placeholder="Şifre Tekrar" required>
                               </mat-form-field>
                            </div>
                       </mat-expansion-panel>
 
-                    <!-- </form> -->
+                    </form>
                   </mat-accordion>
 
             </mat-card-content>
             <mat-card-actions>
-              <button mat-raised-button class="login-content_button" >Kaydol</button>
+              <button mat-raised-button class="login-content_button" (click)="onRegister()">Kaydol</button>
             </mat-card-actions>
           </mat-card>
     </mat-tab>
