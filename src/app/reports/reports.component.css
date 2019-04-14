@@ -16,6 +16,9 @@
 .reports-content-editor {
   width: 100%;
 }
+.reports-content  table {
+  width: 100%;
+}
 td-text-editor {
   width: 100%;
 }
