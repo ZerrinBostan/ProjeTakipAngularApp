@@ -11,6 +11,7 @@ export class AuthguardService implements CanActivate {
 // tslint:disable-next-line: max-line-length
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | Observable<boolean> | Promise<boolean> {
     if (this.localStorage.get('_id')) {
+      this.authService.isLogin.next(true);
       return true;
     } else {
       this.router.navigate(['login']);
