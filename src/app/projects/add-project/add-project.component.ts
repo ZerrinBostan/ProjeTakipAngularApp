@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { ProjectService } from '../project.service';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Projects } from '../projects.model';
+import { LocalStorageService } from 'angular-2-local-storage';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -34,7 +35,7 @@ export class AddProjectComponent implements OnInit {
   });
   projects: Projects;
 // tslint:disable-next-line: max-line-length
-  constructor( public dialogRef: MatDialogRef<AddProjectComponent>, public projectService: ProjectService, public formBuilder: FormBuilder) { }
+  constructor( public dialogRef: MatDialogRef<AddProjectComponent>, public projectService: ProjectService, public formBuilder: FormBuilder, private localStorage: LocalStorageService) { }
   ngOnInit() {
 
   }
@@ -43,6 +44,7 @@ export class AddProjectComponent implements OnInit {
   }
   onAdd() {
     this.projects = this.projectForm.value;
+    this.projects.studentId = this.localStorage.get('_id');
     this.projectService.addProject(this.projects).subscribe((data) => {
       console.log(data);
     });
