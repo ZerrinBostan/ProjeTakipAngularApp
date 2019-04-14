@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticateService } from './authenticate.service';
 import { Students } from './students.model';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   userName: string;
   password: string;
+  step = 0;
   registerForm = this.formBuilder.group({
     identityNumber: ['', Validators.required],
     email: ['', Validators.email],
@@ -29,21 +31,32 @@ export class LoginComponent implements OnInit {
     studentPassword: ['', Validators.required]
   });
   student: Students;
-  constructor(public formBuilder: FormBuilder,private authenticateService: AuthenticateService, private router: Router) { }
+// tslint:disable-next-line: max-line-length
+  constructor(public formBuilder: FormBuilder,private authenticateService: AuthenticateService, private router: Router, private localStorage: LocalStorageService) { }
 
   ngOnInit() {
+
   }
   onRegister() {
     this.student = this.registerForm.value;
     this.authenticateService.register(this.student).subscribe((data)  => {
-        console.log(data);
+        if (data) {
+          console.log(data);
+          this.localStorage.set('_id', data);
+          this.registerForm.reset();
+          this.step = 0;
+        }
     });
   }
   onLogin() {
     this.userName = this.loginForm.get('studentNo').value;
     this.password = this.loginForm.get('studentPassword').value;
     this.authenticateService.authenticate(this.userName, this.password).subscribe((data) => {
-      this.authenticateService.isLogin.next(data);
+      if (data) {
+        if (!this.localStorage.get('_id')) {
+          this.localStorage.set('_id', data);
+        }
+      }
       this.router.navigate(['']);
     });
     }
