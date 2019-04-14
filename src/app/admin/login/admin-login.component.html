@@ -1,0 +1,32 @@
+<div class="login-main">
+  <div class="login-content">
+      <div class="login-content_welcome">
+          <h1>Hoş Geldiniz</h1>
+          <p>Lütfen aşağıdaki bilgileri doldurunuz.</p>
+        </div>
+      <mat-tab-group>
+          <mat-tab label="Oturum Aç">
+              <mat-card>
+                  <mat-card-content>
+                    <form [formGroup]="loginForm">
+                      <div>
+                          <mat-form-field>
+                              <input matInput formControlName="userName" type="text" placeholder="Kullanıcı Adı"  required>
+                          </mat-form-field>
+                      </div>
+                     <div>
+                        <mat-form-field>
+                            <input matInput formControlName="userPassword" type="password" placeholder="Şifre" required>
+                        </mat-form-field>
+                     </div>
+
+                    </form>
+                  </mat-card-content>
+                  <mat-card-actions>
+                    <button mat-raised-button class="login-content_button" (click)="onLogin()">Giriş Yap</button>
+                  </mat-card-actions>
+                </mat-card>
+             </mat-tab>
+      </mat-tab-group>
+  </div>
+</div>
