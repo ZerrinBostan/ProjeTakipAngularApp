@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Students } from '../login/students.model';
+import { Students } from '../students/students.model';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from 'angular-2-local-storage';
 

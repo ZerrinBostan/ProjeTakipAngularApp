@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { ProfileService } from './profile.service';
-import { Students } from '../login/students.model';
+import { Students } from '../students/students.model';
 
 @Component({
   selector: 'app-profile',
