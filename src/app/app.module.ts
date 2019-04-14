@@ -25,6 +25,12 @@ import { DeleteProjectComponent } from './projects/delete-project/delete-project
 import { AddReportComponent } from './reports/add-report/add-report.component';
 import { EditReportComponent } from './reports/edit-report/edit-report.component';
 import { DeleteReportComponent } from './reports/delete-report/delete-report.component';
+import { AdminComponent } from './admin/admin.component';
+import { AdminLoginComponent } from './admin/login/admin-login.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './home/home.component';
+import { StudentsComponent } from './students/students.component';
+import { SnackbarComponent } from './snackbar/snackbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +46,13 @@ import { DeleteReportComponent } from './reports/delete-report/delete-report.com
     DeleteProjectComponent,
     AddReportComponent,
     EditReportComponent,
-    DeleteReportComponent
+    DeleteReportComponent,
+    AdminComponent,
+    AdminLoginComponent,
+    HeaderComponent,
+    HomeComponent,
+    StudentsComponent,
+    SnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +68,7 @@ import { DeleteReportComponent } from './reports/delete-report/delete-report.com
       storageType: 'localStorage'
     })
   ],
-  entryComponents:[DeleteProjectComponent, AddReportComponent],
+  entryComponents:[DeleteProjectComponent, AddReportComponent, DeleteReportComponent, SnackbarComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
