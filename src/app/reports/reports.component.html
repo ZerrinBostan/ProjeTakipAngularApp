@@ -1,11 +1,53 @@
 <div class="reports">
   <div class="reports-header">
     <app-componentheaders [description]="'Rapor yükleme ve görüntüleme işlemlerinizi buradan yapabilirsiniz.'" [componentName]="'Raporlarım'" [componentIcon]="'description'"></app-componentheaders>
+    <button mat-button (click)="openAddDialog()"><mat-icon>add</mat-icon></button>
   </div>
 </div>
 <div class="reports-content">
-  <div class="reports-content-editor">
-      <td-text-editor #textEditor></td-text-editor>
-  </div>
+  <table mat-table [dataSource]="reportData" class="mat-elevation-z8">
+    <ng-container matColumnDef="no">
+      <th mat-header-cell *matHeaderCellDef> No </th>
+      <td mat-cell *matCellDef="let element"> {{element.no}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> İsim </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef> Soyisim </th>
+      <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="revisionNumber">
+      <th mat-header-cell *matHeaderCellDef> Revizyon No </th>
+      <td mat-cell *matCellDef="let element"> {{element.revisionNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Tarih </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Açıklama </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="guncelle">
+        <th mat-header-cell *matHeaderCellDef> Güncelle </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="openEditDialog(element._id)" ><mat-icon>edit</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sil">
+          <th mat-header-cell *matHeaderCellDef> Sil </th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="openDeleteDialog(element._id)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+  </table>
 
 </div>
