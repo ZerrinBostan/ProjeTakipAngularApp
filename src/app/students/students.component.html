@@ -1,0 +1,50 @@
+<div class="students">
+    <div class="students-header">
+        <app-componentheaders [componentName]="'Öğrenciler'" [componentIcon]="'face'" [description]="'Tüm öğrencileri buradan görebilirsiniz.'" ></app-componentheaders>
+    </div>
+    <div class="student-content">
+<table mat-table [dataSource]="studentData" class="mat-elevation-z8">
+    <ng-container matColumnDef="identityNumber">
+      <th mat-header-cell *matHeaderCellDef> TC No </th>
+      <td mat-cell *matCellDef="let element"> {{element.identityNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> E-Mail </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Ad </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="surname">
+      <th mat-header-cell *matHeaderCellDef> Soyad </th>
+      <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+      <th mat-header-cell *matHeaderCellDef> Telefon </th>
+      <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="studentNumber">
+      <th mat-header-cell *matHeaderCellDef> Numara </th>
+      <td mat-cell *matCellDef="let element"> {{element.studentNumber}} </td>
+    </ng-container>
+    <ng-container matColumnDef="studentClass">
+      <th mat-header-cell *matHeaderCellDef> Sınıf </th>
+      <td mat-cell *matCellDef="let element"> {{element.studentClass}} </td>
+    </ng-container>
+    <ng-container matColumnDef="studentClassGroup">
+      <th mat-header-cell *matHeaderCellDef> Şube </th>
+      <td mat-cell *matCellDef="let element"> {{element.studentClassGroup}} </td>
+    </ng-container>
+    <ng-container matColumnDef="isEnabled">
+      <th mat-header-cell *matHeaderCellDef> Onay </th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="!element.isEnabled" (click)="onEnableStudent(element._id)" mat-button><mat-icon>done</mat-icon></button>
+        <p *ngIf="element.isEnabled">Onaylandı</p>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnNames"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+  </table>
+</div>
+</div>
