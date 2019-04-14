@@ -10,6 +10,8 @@ import { LoginComponent } from './login/login.component';
 
 import {MaterialModule} from './material-module';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { LocalStorageModule } from 'angular-2-local-storage';
+
 import { ProjectsComponent } from './projects/projects.component';
 import { AddProjectComponent } from './projects/add-project/add-project.component';
 import { EditProjectComponent } from './projects/edit-project/edit-project.component';
@@ -48,7 +50,11 @@ import { DeleteReportComponent } from './reports/delete-report/delete-report.com
     MatSidenavModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CovalentTextEditorModule
+    CovalentTextEditorModule,
+    LocalStorageModule.forRoot({
+      prefix: 'storage',
+      storageType: 'localStorage'
+    })
   ],
   entryComponents:[DeleteProjectComponent, AddReportComponent],
   providers: [],
