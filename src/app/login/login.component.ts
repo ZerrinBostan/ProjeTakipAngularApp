@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthenticateService } from './authenticate.service';
-import { Students } from './students.model';
+import { Students } from '../students/students.model';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { MatSnackBar } from '@angular/material';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 @Component({
   selector: 'app-login',
@@ -32,13 +34,14 @@ export class LoginComponent implements OnInit {
   });
   student: Students;
 // tslint:disable-next-line: max-line-length
-  constructor(public formBuilder: FormBuilder,private authenticateService: AuthenticateService, private router: Router, private localStorage: LocalStorageService) { }
+  constructor(public formBuilder: FormBuilder,private authenticateService: AuthenticateService, private router: Router, private localStorage: LocalStorageService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
   }
   onRegister() {
     this.student = this.registerForm.value;
+    this.student.isEnabled = false;
     this.authenticateService.register(this.student).subscribe((data)  => {
         if (data) {
           console.log(data);
@@ -52,12 +55,15 @@ export class LoginComponent implements OnInit {
     this.userName = this.loginForm.get('studentNo').value;
     this.password = this.loginForm.get('studentPassword').value;
     this.authenticateService.authenticate(this.userName, this.password).subscribe((data) => {
-      if (data) {
-        if (!this.localStorage.get('_id')) {
-          this.localStorage.set('_id', data);
+        if (data.isEnabled) {
+          if (!this.localStorage.get('_id')) {
+            this.localStorage.set('_id', data._id);
+            this.authenticateService.isLogin.next(true);
+            this.router.navigate(['']);
+          }
+        } else {
+          this.snackBar.openFromComponent(SnackbarComponent, {duration:2000 ,data: 'Hesabınız henüz onaylanmadı.'});
         }
-      }
-      this.router.navigate(['']);
     });
     }
 
