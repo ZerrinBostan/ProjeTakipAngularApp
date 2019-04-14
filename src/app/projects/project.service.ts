@@ -19,6 +19,10 @@ export class ProjectService {
     const url = `${environment.apiUrl}projects`;
     return this.http.get<Projects[]>(url);
   }
+  getProjectsById(id: string): Observable<Projects[]> {
+    const url = `${environment.apiUrl}projects/projects/${id}`;
+    return this.http.get<Projects[]>(url);
+  }
   getProject(id: string): Observable<Projects> {
     const url = `${environment.apiUrl}projects/${id}`;
     return this.http.get<Projects>(url);

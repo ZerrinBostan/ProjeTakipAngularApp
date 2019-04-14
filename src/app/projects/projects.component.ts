@@ -6,6 +6,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { ProjectService } from './project.service';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-projects',
@@ -14,7 +15,7 @@ import { EditProjectComponent } from './edit-project/edit-project.component';
 })
 export class ProjectsComponent implements OnInit {
   dataSource = new MatTableDataSource<Projects>();
-
+  id: string;
   projectData: Projects[] = [];
   columnNames = [
     'ders',
@@ -34,7 +35,7 @@ export class ProjectsComponent implements OnInit {
       width: '250px'
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.projectService.getProjects().subscribe((data) => {
+      this.projectService.getProjectsById(this.id).subscribe((data) => {
         this.projectData = data.slice();
       });
     });
@@ -45,7 +46,7 @@ export class ProjectsComponent implements OnInit {
       data: id
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.projectService.getProjects().subscribe((data) => {
+      this.projectService.getProjectsById(this.id).subscribe((data) => {
         this.projectData = data.slice();
       });
     });
@@ -56,16 +57,17 @@ export class ProjectsComponent implements OnInit {
       data: id
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.projectService.getProjects().subscribe((data) => {
+      this.projectService.getProjectsById(this.id).subscribe((data) => {
         this.projectData = data.slice();
       });
     });
   }
 
-  constructor(public dialog: MatDialog, public projectService: ProjectService) { }
+  constructor(public dialog: MatDialog, public projectService: ProjectService, private localStorage: LocalStorageService) { }
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe(data => {
+    this.id = this.localStorage.get('_id');
+    this.projectService.getProjectsById(this.id).subscribe(data => {
       this.projectData = data.slice();
     });
   }
