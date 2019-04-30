@@ -31,6 +31,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { StudentsComponent } from './students/students.component';
 import { SnackbarComponent } from './snackbar/snackbar.component';
+import { AdminReportsComponent } from './admin/reports/admin-reports.component';
+import { NotesComponent } from './admin/notes/notes.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,10 +51,12 @@ import { SnackbarComponent } from './snackbar/snackbar.component';
     DeleteReportComponent,
     AdminComponent,
     AdminLoginComponent,
+    AdminReportsComponent,
     HeaderComponent,
     HomeComponent,
     StudentsComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,

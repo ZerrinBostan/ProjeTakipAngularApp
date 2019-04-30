@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -15,12 +15,16 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin/login/admin-login.component';
 import { HomeComponent } from './home/home.component';
 import { StudentsComponent } from './students/students.component';
+import { AdminReportsComponent } from './admin/reports/admin-reports.component';
+import { NotesComponent } from './admin/notes/notes.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'admin-login', component: AdminLoginComponent},
   {path: '', component: HomeComponent, canActivate: [AuthguardService], children: [
     {path: 'profile', component: ProfileComponent, canActivate: [AuthguardService]},
     {path: 'admin', component: AdminComponent},
+    {path: 'admin-reports', component: AdminReportsComponent},
+    {path: 'admin-notes', component: NotesComponent},
     {path: 'projects', component: ProjectsComponent,  canActivate: [AuthguardService], children: [
       {path: 'add', component: AddProjectComponent},
       {path: 'edit', component : EditProjectComponent},
@@ -33,7 +37,7 @@ const routes: Routes = [
 
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

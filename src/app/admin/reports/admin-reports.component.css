@@ -1,0 +1,29 @@
+.reports {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+.reports-header {
+  width: 100%;
+}
+.reports-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  width: 100%;
+}
+.reports-content .mat-accordion {
+  width: 100%;
+}
+.mat-expansion-panel-header-title,
+.mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+.mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.mat-button-ekle {
+  margin-left: 10px;
+}

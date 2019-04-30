@@ -27,11 +27,11 @@
       </ng-container>
       <ng-container matColumnDef="baslangicTarihi">
         <th mat-header-cell *matHeaderCellDef> Baslangıç Tarihi </th>
-        <td mat-cell *matCellDef="let element"> {{element.start_time}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.start_time  | date:'dd/MM/yyyy'}} </td>
       </ng-container>
       <ng-container matColumnDef="bitisTarihi">
         <th mat-header-cell *matHeaderCellDef> Bitiş Tarihi </th>
-        <td mat-cell *matCellDef="let element"> {{element.end_time}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.end_time | date:'dd/MM/yyyy'}} </td>
       </ng-container>
       <ng-container matColumnDef="projeAciklamasi">
         <th mat-header-cell *matHeaderCellDef> Proje Açıklaması </th>

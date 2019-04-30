@@ -1,0 +1,45 @@
+<div class="reports">
+    <div class="reports-header">
+      <app-componentheaders [description]="'Raporları görüntüleme işlemlerinizi buradan yapabilirsiniz.'" [componentName]="'Raporlar'" [componentIcon]="'description'"></app-componentheaders>
+    </div>
+  </div>
+  <div class="reports-content">
+      <mat-accordion>
+          <mat-expansion-panel *ngFor="let project of projects">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{project.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{project.definition}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div *ngFor="let student of students">
+                  <mat-expansion-panel *ngIf="project.studentId === student._id">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{student.name}} {{student.surname}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          {{student.studentNumber}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div *ngFor="let report of reports">
+                            <mat-expansion-panel *ngIf="report.studentId === student._id && report.projectId === project._id" hideToggle>
+                                <mat-expansion-panel-header>
+                                  <mat-panel-title>
+                                    {{report.name}} | {{report.no}}
+                                  </mat-panel-title>
+                                  <mat-panel-description>
+                                    {{report.date | date:'dd/MM/yyyy'}}
+                                    <mat-icon>visibility</mat-icon>
+                                  </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <td-text-editor #textEditor [value]="report.description"></td-text-editor>
+                              </mat-expansion-panel>
+                      </div>
+                    </mat-expansion-panel>
+              </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+  </div>

@@ -43,6 +43,16 @@
                                   <mat-icon>description</mat-icon>Raporlarım
                               </a>
                           </div>
+                          <div *ngIf="isAdmin">
+                              <a routerLink="/admin-reports" mat-button>
+                                  <mat-icon>description</mat-icon>Raporlar
+                              </a>
+                          </div>
+                          <div *ngIf="isAdmin">
+                              <a routerLink="/admin-notes" mat-button>
+                                  <mat-icon>assignment</mat-icon>Notlar
+                              </a>
+                          </div>
 
                   </mat-drawer>
                   <mat-drawer-content>

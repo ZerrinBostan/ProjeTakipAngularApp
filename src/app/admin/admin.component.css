@@ -9,7 +9,15 @@
   width: 30%;
   margin-bottom: 10px;
   margin-top:10px;
+  background: linear-gradient(to bottom, white, rgb(231, 231, 231))
 }
 .progress-bar {
   height: 20px;
+}
+.mat-card-content-flex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }

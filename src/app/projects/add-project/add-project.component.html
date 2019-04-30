@@ -22,11 +22,7 @@
           <input type="text" matInput placeholder="Proje Yürütücüsü" formControlName="owner">
         </mat-form-field>
         <mat-form-field>
-          <mat-select placeholder="Proje Süresi" formControlName="time">
-            <mat-option *ngFor="let week of weeks" [value]="week">
-              {{week }}
-            </mat-option>
-          </mat-select>
+          <input matInput type="text" placeholder="Hafta Sayısı" formControlName="week">
         </mat-form-field>
         <mat-form-field>
                 <input matInput [matDatepicker]="picker" placeholder="Başlangıç Tarihi" formControlName="start_time">

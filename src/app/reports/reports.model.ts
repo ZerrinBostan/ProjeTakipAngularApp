@@ -7,6 +7,7 @@ export interface Reports {
   revisionNumber: number;
   date: Date;
   description: string;
+  projectId: string;
 }
 
 export class Report {

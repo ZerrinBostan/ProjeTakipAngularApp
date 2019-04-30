@@ -1,0 +1,50 @@
+<div class="notes">
+  <div class="notes-header">
+      <app-componentheaders [componentName]="'Not Sistemi'" [componentIcon]="'assignment'" [description]="'Buradan öğrencilere not verebilirsiniz.'" ></app-componentheaders>
+  </div>
+  <div class="notes-content">
+      <mat-accordion>
+            <div *ngFor="let student of students">
+                  <mat-expansion-panel>
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          {{student.name}} {{student.surname}}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                          {{student.studentNumber}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      <div *ngFor="let week of weekLength; let i = index">
+                            <div class="notes-content-input">
+                              <div>
+                                  {{week}}. Hafta
+                              </div>
+                              <mat-form-field>
+                                <input matInput placeholder="Not" (change)="onNoteChange(week,$event.target.value)">
+                              </mat-form-field>
+                              <mat-form-field *ngIf="i === chosenWeek-1">
+                                  <input matInput #vize placeholder="Vize">
+                              </mat-form-field>
+                              <mat-form-field *ngIf="i === chosenWeek-1">
+                                  <input matInput #vizeOrtalama placeholder="Vize Ortalama">
+                              </mat-form-field>
+                              <mat-form-field *ngIf="i === finalWeek-1">
+                                  <input matInput #final placeholder="Final">
+                              </mat-form-field>
+                              <mat-form-field *ngIf="i === finalWeek-1">
+                                  <input matInput #finalOrtalama placeholder="Final Ortalama">
+                              </mat-form-field>
+                              <button *ngIf="i === chosenWeek-1" mat-raised-button (click)="onCalculateVize()"> Vize Hesapla</button>
+                              <button  *ngIf="i === finalWeek-1" mat-raised-button (click)="onCalculateFinal()"> Final Hesapla</button>
+                            </div>
+                      </div>
+                      <div class="notes-content-footer">
+                            <div class="notes-content-footer_right">
+                              <button mat-raised-button (click)="onSubmit(student._id)">Kaydet</button>
+                            </div>
+
+                      </div>
+                    </mat-expansion-panel>
+              </div>
+        </mat-accordion>
+  </div>

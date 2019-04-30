@@ -50,5 +50,35 @@
                 <button mat-button>Rapor sayfasına git</button>
               </mat-card-actions>
             </mat-card>
+            <mat-card>
+                <mat-card-header>
+                  <div mat-card-avatar>
+                    <mat-icon>build</mat-icon>
+                  </div>
+                  <mat-card-title>Ayarlar</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                  <div class="mat-card-content-flex">
+                      <mat-form-field>
+                          <input type="text" matInput #weekNumber [value]="settings?.weekNumber" placeholder="Hafta Sayısı">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input type="text" matInput #chosenWeek [value]="settings?.chosenWeek" placeholder="Vize Haftası">
+                        </mat-form-field>
+                        <mat-form-field>
+                          <input type="text" matInput #vizePercentage [value]="settings?.vizePercentage" placeholder="Vize Yüzdesi">
+                      </mat-form-field>
+                      <mat-form-field>
+                          <input type="text" matInput #finalWeek [value]="settings?.finalWeek" placeholder="Final Haftası">
+                      </mat-form-field>
+                      <mat-form-field>
+                        <input type="text" matInput #finalPercentage [value]="settings?.finalPercentage" placeholder="Final Yüzdesi">
+                    </mat-form-field>
+                  </div>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button mat-button (click)="saveSettings(weekNumber.value, chosenWeek.value, vizePercentage.value, finalWeek.value, finalPercentage.value)">Kaydet</button>
+                </mat-card-actions>
+              </mat-card>
 </div>
 
