@@ -6,6 +6,8 @@ export interface Notes {
   }];
   vize: number;
   final: number;
+  vizeQuiz: number;
+  finalQuiz: number;
 }
 export class Note {
   note: Notes;

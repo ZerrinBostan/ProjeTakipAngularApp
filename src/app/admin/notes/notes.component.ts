@@ -7,6 +7,8 @@ import { SettingsService } from "../settings.service";
 import { LocalStorageService } from "angular-2-local-storage";
 import { NotesService } from "./notes.service";
 import { Notes } from './notes.model';
+import { MatSnackBar } from '@angular/material';
+import { SnackbarComponent } from 'src/app/snackbar/snackbar.component';
 
 @Component({
   selector: "app-notes",
@@ -20,6 +22,7 @@ export class NotesComponent implements OnInit {
   @ViewChild('finalOrtalama') finalOrtalama: ElementRef;
   students: Students[];
   reports: Reports[];
+  notesArr: Notes[];
   weekLength = [];
   chosenWeek: number;
   vizePercentage: number;
@@ -31,12 +34,13 @@ export class NotesComponent implements OnInit {
   notes: Notes;
   vizeNotes: number;
   vizeNote: number;
-  finalNote:number;
+  finalNote: number;
   constructor(
     private studentService: StudentsService,
     private settingService: SettingsService,
     private localStorage: LocalStorageService,
-    private noteService: NotesService
+    private noteService: NotesService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -57,26 +61,43 @@ export class NotesComponent implements OnInit {
           }
         });
     }
+    this.GetNotes();
   }
   onSubmit(studentId: string) {
-    this.notes.vize = this.vizeNote;
-    this.notes.final = this.finalNote;
-    this.notes.notes = this.notesArray;
-    this.notes.studentId = studentId;
-    this.noteService.setNotes(this.notes).subscribe((observer) => {
-      console.log(observer);
-    });
-  }
-  onNoteChange(week: number, value: number) {
-// tslint:disable-next-line: prefer-for-of
-    for (let index = 0; index < this.notesArray.length; index++) {
-      const element = this.notesArray[index];
-      if (element['weekNumber'] === week) {
-          this.notesArray.splice(index, 1);
-      }
+    this.notes = {
+      vize: this.vizeNote,
+      final: this.finalNote,
+      notes: this.notesArray,
+      vizeQuiz: this.vize.nativeElement.value,
+      finalQuiz: this.final.nativeElement.value,
+      studentId
+    };
+    const note = this.GetNote(studentId);
+    if (note !== undefined) {
+      this.noteService.updateNotes(note._id, this.notes).subscribe((observer) => {
+        if (observer) {
+          this.snackBar.openFromComponent(SnackbarComponent, {duration: 2000 , data: 'Güncellendi.'});
+        }
+      });
+    } else {
+      this.noteService.setNotes(this.notes).subscribe((observer) => {
+        if(observer) {
+          this.snackBar.openFromComponent(SnackbarComponent, {duration: 2000 , data: 'Kaydedildi.'});
+        }
+      });
     }
-    this.notesArray.push({weekNumber: week, note: value});
   }
+  onNoteChange(week: number, value: number, studentId?) {
+// tslint:disable-next-line: prefer-for-of
+    this.DeleteWeekInNoteArray(week);
+    if (studentId) {
+      this.GetNote(studentId).notes.forEach(element => {
+        this.notesArray.push({weekNumber: element.weekNumber, note: element.note});
+      });
+    } else {
+      this.notesArray.push({weekNumber: week, note: value});
+    }
+}
   onCalculateVize() {
     let total = 0;
     for (let index = 0; index < this.notesArray.length; index++) {
@@ -86,8 +107,8 @@ export class NotesComponent implements OnInit {
           total += +this.notesArray[j]['note'];
         }
         total = total / this.chosenWeek;
-        total = (total * this.vizePercentage) / 100;
-        this.vizeNote = ((this.vize.nativeElement.value * (100 - this.vizePercentage)) / 100) + total;
+        total = (total * ( 100 -this.vizePercentage)) / 100;
+        this.vizeNote = ((this.vize.nativeElement.value * this.vizePercentage) / 100) + total;
         this.vizeOrtalama.nativeElement.value = this.vizeNote;
       }
     }
@@ -101,9 +122,31 @@ export class NotesComponent implements OnInit {
           total += +this.notesArray[j]['note'];
         }
         total = total / this.finalWeek;
-        total = (total * this.finalPercentage) / 100;
-        this.finalNote = ((this.final.nativeElement.value * (100 - this.finalPercentage)) / 100) + total;
+        total = (total * (100 - this.finalPercentage)) / 100;
+        this.finalNote = ((this.final.nativeElement.value * this.finalPercentage) / 100) + total;
         this.finalOrtalama.nativeElement.value = this.finalNote;
+      }
+    }
+  }
+  GetNotes() {
+    this.noteService.getNotes().subscribe((note) => {
+      this.notesArr = note;
+    });
+  }
+  GetNote(studenId) {
+    let not;
+    this.notesArr.forEach((note) => {
+      if (note.studentId === studenId) {
+        not = note;
+      }
+    });
+    return not;
+  }
+  DeleteWeekInNoteArray(week) {
+        for (let index = 0; index < this.notesArray.length; index++) {
+      const element = this.notesArray[index];
+      if (element['weekNumber'] === week) {
+          this.notesArray.splice(index, 1);
       }
     }
   }

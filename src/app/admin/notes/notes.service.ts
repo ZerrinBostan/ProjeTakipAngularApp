@@ -13,7 +13,13 @@ export class NotesService {
   setNotes(notes: Notes): Observable<any> {
     return this.http.post(this.url, notes);
   }
-  getNotes(): Observable<Notes> {
-    return this.http.get<Notes>(this.url);
+  getNotes(): Observable<Notes[]> {
+    return this.http.get<Notes[]>(this.url);
+  }
+  updateNotes(id: any, note: Notes): Observable<Notes> {
+    return this.http.put<Notes>(`${this.url}/${id}`, note);
+  }
+  getNote(id: any): Observable<Notes> {
+    return this.http.get<Notes>(`${this.url}/${id}`);
   }
 }

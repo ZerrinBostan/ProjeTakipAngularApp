@@ -15,34 +15,87 @@
                         </mat-panel-description>
                       </mat-expansion-panel-header>
                       <div *ngFor="let week of weekLength; let i = index">
-                            <div class="notes-content-input">
-                              <div>
-                                  {{week}}. Hafta
-                              </div>
-                              <mat-form-field>
-                                <input matInput placeholder="Not" (change)="onNoteChange(week,$event.target.value)">
-                              </mat-form-field>
-                              <mat-form-field *ngIf="i === chosenWeek-1">
-                                  <input matInput #vize placeholder="Vize">
-                              </mat-form-field>
-                              <mat-form-field *ngIf="i === chosenWeek-1">
-                                  <input matInput #vizeOrtalama placeholder="Vize Ortalama">
-                              </mat-form-field>
-                              <mat-form-field *ngIf="i === finalWeek-1">
-                                  <input matInput #final placeholder="Final">
-                              </mat-form-field>
-                              <mat-form-field *ngIf="i === finalWeek-1">
-                                  <input matInput #finalOrtalama placeholder="Final Ortalama">
-                              </mat-form-field>
-                              <button *ngIf="i === chosenWeek-1" mat-raised-button (click)="onCalculateVize()"> Vize Hesapla</button>
-                              <button  *ngIf="i === finalWeek-1" mat-raised-button (click)="onCalculateFinal()"> Final Hesapla</button>
-                            </div>
-                      </div>
+                        <div *ngIf="notesArr.length > 0">
+                            <div *ngFor="let note of notesArr">
+                                <div *ngIf="note.studentId === student._id">
+                                    <div class="notes-content-input">
+                                        <div>
+                                            {{week}}. Hafta
+                                        </div>
+                                        <mat-form-field>
+                                          <input matInput placeholder="Not" [value]="note.notes[i]?.note" (change)="onNoteChange(week,$event.target.value, student._id)">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === chosenWeek-1">
+                                            <input matInput #vize [value]="note.vizeQuiz" placeholder="Vize">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === chosenWeek-1">
+                                            <input matInput #vizeOrtalama [value]="note.vize" placeholder="Vize Ortalama">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === finalWeek-1">
+                                            <input matInput #final [value]="note.finalQuiz" placeholder="Final">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === finalWeek-1">
+                                            <input matInput #finalOrtalama [value]="note.final" placeholder="Final Ortalama">
+                                        </mat-form-field>
+                                        <button *ngIf="i === chosenWeek-1" mat-raised-button (click)="onCalculateVize()"> Vize Hesapla</button>
+                                        <button  *ngIf="i === finalWeek-1" mat-raised-button (click)="onCalculateFinal()"> Final Hesapla</button>
+                                      </div>
+                                </div>
+                                <div *ngIf="note.studentId !== student._id">
+                                    <div class="notes-content-input">
+                                        <div>
+                                            {{week}}. Hafta
+                                        </div>
+                                        <mat-form-field>
+                                            <input matInput placeholder="Not" (change)="onNoteChange(week,$event.target.value)">
+                                          </mat-form-field>
+                                        <mat-form-field *ngIf="i === chosenWeek-1">
+                                            <input matInput #vize placeholder="Vize">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === chosenWeek-1">
+                                            <input matInput #vizeOrtalama placeholder="Vize Ortalama">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === finalWeek-1">
+                                            <input matInput #final placeholder="Final">
+                                        </mat-form-field>
+                                        <mat-form-field *ngIf="i === finalWeek-1">
+                                            <input matInput #finalOrtalama placeholder="Final Ortalama">
+                                        </mat-form-field>
+                                        <button *ngIf="i === chosenWeek-1" mat-raised-button (click)="onCalculateVize()"> Vize Hesapla</button>
+                                        <button  *ngIf="i === finalWeek-1" mat-raised-button (click)="onCalculateFinal()"> Final Hesapla</button>
+                                      </div>
+                                </div>
+                        </div>
+                          </div>
+                          <div *ngIf="notesArr.length === 0">
+                              <div class="notes-content-input">
+                                  <div>
+                                      {{week}}. Hafta
+                                  </div>
+                                  <mat-form-field>
+                                      <input matInput placeholder="Not" (change)="onNoteChange(week,$event.target.value)">
+                                    </mat-form-field>
+                                  <mat-form-field *ngIf="i === chosenWeek-1">
+                                      <input matInput #vize placeholder="Vize">
+                                  </mat-form-field>
+                                  <mat-form-field *ngIf="i === chosenWeek-1">
+                                      <input matInput #vizeOrtalama placeholder="Vize Ortalama">
+                                  </mat-form-field>
+                                  <mat-form-field *ngIf="i === finalWeek-1">
+                                      <input matInput #final placeholder="Final">
+                                  </mat-form-field>
+                                  <mat-form-field *ngIf="i === finalWeek-1">
+                                      <input matInput #finalOrtalama placeholder="Final Ortalama">
+                                  </mat-form-field>
+                                  <button *ngIf="i === chosenWeek-1" mat-raised-button (click)="onCalculateVize()"> Vize Hesapla</button>
+                                  <button  *ngIf="i === finalWeek-1" mat-raised-button (click)="onCalculateFinal()"> Final Hesapla</button>
+                                </div>
+                          </div>
+                          </div>
                       <div class="notes-content-footer">
                             <div class="notes-content-footer_right">
                               <button mat-raised-button (click)="onSubmit(student._id)">Kaydet</button>
                             </div>
-
                       </div>
                     </mat-expansion-panel>
               </div>
