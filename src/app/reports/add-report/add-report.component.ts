@@ -8,6 +8,8 @@ import { LocalStorageService } from 'angular-2-local-storage';
 import { StudentsService } from 'src/app/students/students.service';
 import { ProjectService } from 'src/app/projects/project.service';
 import { Projects } from 'src/app/projects/projects.model';
+import { NotificationService } from 'src/app/admin/notification.service';
+import { Students } from 'src/app/students/students.model';
 
 @Component({
   selector: 'app-add-report',
@@ -27,23 +29,31 @@ export class AddReportComponent implements OnInit {
   });
   report: Reports;
   projects: Projects[];
+  students: Students;
   constructor(
     public dialogRef: MatDialogRef<AddReportComponent>,
     private formBuilder: FormBuilder,
     private reportService: ReportsService,
     private localStorage: LocalStorageService,
     private studentService: StudentsService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private notificationService: NotificationService
     ) { }
   ngOnInit() {
     this.textEditor.options.lineWrapping = true;
     this.getProjects();
+    this.getStudent(this.localStorage.get('_id'));
   }
   onAdd() {
     this.report = this.reportForm.value;
     this.report.studentId = this.localStorage.get('_id');
     this.reportService.addReport(this.report).subscribe((report) => {
-      console.log(report);
+      this.notificationService.setNotification({
+        icon: 'description',
+        message: `${this.students.name} ${this.students.surname}, ${report.no}no'lu raporunu ekledi.`
+      }).subscribe((data) => {
+        console.log(data);
+      });
     });
     this.dialogRef.close();
   }
@@ -53,6 +63,11 @@ export class AddReportComponent implements OnInit {
   getProjects() {
     this.projectService.getProjects().subscribe((project) => {
       this.projects = project;
+    });
+  }
+  getStudent(id: any) {
+    this.studentService.getStudent(id).subscribe((observer) => {
+      this.students = observer;
     });
   }
 

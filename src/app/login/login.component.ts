@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { MatSnackBar } from '@angular/material';
 import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { NotificationService } from '../admin/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -34,7 +35,13 @@ export class LoginComponent implements OnInit {
   });
   student: Students;
 // tslint:disable-next-line: max-line-length
-  constructor(public formBuilder: FormBuilder,private authenticateService: AuthenticateService, private router: Router, private localStorage: LocalStorageService, private snackBar: MatSnackBar) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private authenticateService: AuthenticateService,
+    private router: Router,
+    private localStorage: LocalStorageService,
+    private snackBar: MatSnackBar,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
 
@@ -44,10 +51,15 @@ export class LoginComponent implements OnInit {
     this.student.isEnabled = false;
     this.authenticateService.register(this.student).subscribe((data)  => {
         if (data) {
-          console.log(data);
           this.localStorage.set('_id', data);
           this.registerForm.reset();
           this.step = 0;
+          this.notificationService.setNotification({
+            icon: 'work',
+            message: `${this.student.name} ${this.student.surname} isimli öğrenci kayıt oldu. Onay bekliyor.`
+          }).subscribe((res) => {
+            console.log(res);
+          });
         }
     });
   }

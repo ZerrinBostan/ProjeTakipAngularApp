@@ -58,9 +58,11 @@ export class AddProjectComponent implements OnInit {
     this.projectService.addProject(this.projects).subscribe((data) => {
       let notification: Notification = {
         icon: 'work',
-        message: `${this.student.name} ${this.student.surname} ${this.projects.title} projesini ekledi.`
+        message: `${this.student.name} ${this.student.surname}, ${this.projects.title} projesini ekledi.`
       };
-      this.notificationService.setNotification(notification);
+      this.notificationService.setNotification(notification).subscribe((observer) => {
+        console.log(observer);
+      });
       this.snackBar.openFromComponent(SnackbarComponent, {data: 'Proje eklendi.', duration: 2000});
     });
     this.dialogRef.close();

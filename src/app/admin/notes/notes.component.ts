@@ -29,8 +29,9 @@ export class NotesComponent implements OnInit {
   finalWeek: number;
   finalPercentage: number;
   notesArray: [{weekNumber: number, note: number}] = [{
-    weekNumber: 1, note:50
+    weekNumber: 0, note:50
   }];
+  isArrayEmpty = true;
   notes: Notes;
   vizeNotes: number;
   vizeNote: number;
@@ -89,25 +90,38 @@ export class NotesComponent implements OnInit {
   }
   onNoteChange(week: number, value: number, studentId?) {
 // tslint:disable-next-line: prefer-for-of
-    this.DeleteWeekInNoteArray(week);
     if (studentId) {
-      this.GetNote(studentId).notes.forEach(element => {
-        this.notesArray.push({weekNumber: element.weekNumber, note: element.note});
-      });
+      if (this.isArrayEmpty) {
+        this.notesArray.push({weekNumber: week, note: +value});
+        this.GetNote(studentId).notes.forEach(element => {
+          if (week === element.weekNumber) {
+              element.note = value;
+              this.notesArray.push({weekNumber: element.weekNumber, note: element.note});
+          } else {
+            this.notesArray.push({weekNumber: element.weekNumber, note: element.note});
+            this.isArrayEmpty = false;
+          }
+        });
+      } else {
+        this.DeleteWeekInNoteArray(week);
+        this.notesArray.push({weekNumber: week, note: +value});
+      }
     } else {
-      this.notesArray.push({weekNumber: week, note: value});
+      this.DeleteWeekInNoteArray(week);
+      this.notesArray.push({weekNumber: week, note: +value});
     }
+    console.log(this.notesArray);
 }
   onCalculateVize() {
     let total = 0;
-    for (let index = 0; index < this.notesArray.length; index++) {
+    for (let index = 1; index < this.notesArray.length; index++) {
       const element = this.notesArray[index];
-      if (element['weekNumber'] === this.chosenWeek) {
+      if (element.weekNumber === this.chosenWeek) {
         for (let j = 0; j < this.chosenWeek; j++) {
           total += +this.notesArray[j]['note'];
         }
         total = total / this.chosenWeek;
-        total = (total * ( 100 -this.vizePercentage)) / 100;
+        total = (total * ( 100 - this.vizePercentage)) / 100;
         this.vizeNote = ((this.vize.nativeElement.value * this.vizePercentage) / 100) + total;
         this.vizeOrtalama.nativeElement.value = this.vizeNote;
       }
@@ -115,7 +129,7 @@ export class NotesComponent implements OnInit {
   }
   onCalculateFinal() {
     let total = 0;
-    for (let index = 0; index < this.notesArray.length; index++) {
+    for (let index = 1; index < this.notesArray.length; index++) {
       const element = this.notesArray[index];
       if (element['weekNumber'] === this.finalWeek) {
         for (let j = 0; j < this.finalWeek; j++) {
@@ -149,6 +163,9 @@ export class NotesComponent implements OnInit {
           this.notesArray.splice(index, 1);
       }
     }
+  }
+  onExpanded() {
+    console.log('Taha');
   }
 }
 

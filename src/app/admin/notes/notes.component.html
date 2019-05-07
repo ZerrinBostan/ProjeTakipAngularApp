@@ -5,7 +5,7 @@
   <div class="notes-content">
       <mat-accordion>
             <div *ngFor="let student of students">
-                  <mat-expansion-panel>
+                  <mat-expansion-panel (opened)="onExpanded()">
                       <mat-expansion-panel-header>
                         <mat-panel-title>
                           {{student.name}} {{student.surname}}
@@ -29,7 +29,7 @@
                                             <input matInput #vize [value]="note.vizeQuiz" placeholder="Vize">
                                         </mat-form-field>
                                         <mat-form-field *ngIf="i === chosenWeek-1">
-                                            <input matInput #vizeOrtalama [value]="note.vize" placeholder="Vize Ortalama">
+                                            <input matInput #vizeOrtalama id="student._id_vize" [value]="note.vize" placeholder="Vize Ortalama">
                                         </mat-form-field>
                                         <mat-form-field *ngIf="i === finalWeek-1">
                                             <input matInput #final [value]="note.finalQuiz" placeholder="Final">

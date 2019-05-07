@@ -5,7 +5,7 @@
           <div>
               <mat-drawer-container>
                   <mat-drawer #drawer class="main-container-drawer" mode="side">
-                      <div>
+                      <div *ngIf="!isAdmin">
                           <a routerLink="/profile" mat-button>
                               <mat-icon>account_circle</mat-icon>Profil
                           </a>

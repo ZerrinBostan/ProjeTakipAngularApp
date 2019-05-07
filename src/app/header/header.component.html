@@ -10,14 +10,10 @@
             <button mat-button [matMenuTriggerFor]="notification">
                 <mat-icon>add_alert </mat-icon>
             </button>
-            <mat-menu #notification="matMenu">
-                <p mat-menu-item>
-                    Proje Eklendi
-                    <mat-icon matBadge="4">book</mat-icon>
-                </p>
-                <p mat-menu-item>
-                    Projeniz Onaylandı
-                    <mat-icon matBadge="15" matBadgeColor="warn">check_circle</mat-icon>
+            <mat-menu  #notification="matMenu">
+                <p mat-menu-item *ngFor="let noti of notifications">
+                    {{noti.message}}
+                    <mat-icon>{{noti.icon}}</mat-icon>
                 </p>
             </mat-menu>
             <button mat-button *ngIf="!isAdmin" (click)="logOut()">
